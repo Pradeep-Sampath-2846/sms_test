@@ -1,23 +1,30 @@
-package test.springBoot.sms;
+package testProject.springBoot.sms.controller;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import test.springBoot.sms.Entity.School;
-import test.springBoot.sms.Entity.Student;
-import test.springBoot.sms.repository.StudentRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import testProject.springBoot.sms.Entity.School;
+import testProject.springBoot.sms.Entity.Student;
+import testProject.springBoot.sms.service.impl.StudentServiceImpl;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Demo {
-    StudentRepository studentRepository;
+@RestController
+@RequestMapping("/sms/api")
+public class FirstControllerClass {
+    StudentServiceImpl studentServiceImpl;
 
-    @Test
-    void name() {
+
+    public FirstControllerClass(StudentServiceImpl studentServiceImpl) {
+        this.studentServiceImpl = studentServiceImpl;
+    }
+
+    @GetMapping("/hello")
+    public String methodOne(){
+
         File file = new File("/img/12337.jpg");
         if (!file.exists()){
             try {
@@ -32,7 +39,7 @@ public class Demo {
             fis.close();
 
             School school = new School(10, "Emibilipitiya", "R/Emb/Embilipitiya MV");
-            studentRepository.save(new Student(2,"pradeep","panamura",24,bytes,school));
+            studentServiceImpl.saveStudent(new Student(2,"pradeep","panamura",24,bytes,school));
         } catch (FileNotFoundException e) {
             System.out.println("there is no file inside");
             throw new RuntimeException(e);
@@ -40,5 +47,6 @@ public class Demo {
             throw new RuntimeException(e);
         }
 
+        return "<h1> Hello Im Pradeep </h1>";
     }
 }

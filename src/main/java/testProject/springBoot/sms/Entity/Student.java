@@ -1,20 +1,16 @@
-package test.springBoot.sms.Entity;
+package testProject.springBoot.sms.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
-import org.hibernate.type.BlobType;
-import org.hibernate.type.descriptor.sql.LobTypeMappings;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.sql.Blob;
-import java.sql.Clob;
 import java.util.Set;
 
 @Entity
 @Data@AllArgsConstructor@NoArgsConstructor
-public class Student {
+public class Student implements SuperEntity{
     @Id
     private int id;
     @Column(nullable = false)
@@ -41,6 +37,14 @@ public class Student {
         this.address = address;
         this.age = age;
         this.profileImage = profileImage;
+        this.school = school;
+    }
+    @Autowired
+    public Student(int id, String name, String address, int age, School school) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.age = age;
         this.school = school;
     }
 }

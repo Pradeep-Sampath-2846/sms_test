@@ -1,4 +1,4 @@
-package test.springBoot.sms.Entity;
+package testProject.springBoot.sms.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 @Data@AllArgsConstructor@NoArgsConstructor
-public class School {
+public class School implements SuperEntity{
     @Id
     private int id;
     private String name;

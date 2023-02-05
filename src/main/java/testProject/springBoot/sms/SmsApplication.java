@@ -1,4 +1,4 @@
-package test.springBoot.sms;
+package testProject.springBoot.sms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
